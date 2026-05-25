@@ -59,6 +59,7 @@
       z-index: 1;
       text-align: center;
       max-width: 680px;
+      width: 100%;
     }
 
     /* ── LOGO ── */
@@ -125,49 +126,89 @@
       animation: rise 0.8s 0.2s ease both;
     }
 
-    /* ── NOTIFY FORM ── */
-    .form-row {
-      display: flex;
-      gap: 10px;
-      max-width: 420px;
+    /* ── FORM ── */
+    .form-wrap {
+      background: var(--mid);
+      border: 1px solid #2a2a28;
+      border-radius: 14px;
+      padding: 1.5rem;
+      max-width: 460px;
       margin: 0 auto 3rem;
       animation: rise 0.8s 0.3s ease both;
+      text-align: left;
     }
 
-    .form-row input {
-      flex: 1;
-      background: var(--mid);
-      border: 1px solid #333;
+    .form-wrap label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .form-wrap input,
+    .form-wrap select {
+      width: 100%;
+      background: #111110;
+      border: 1px solid #2e2e2b;
       color: var(--light);
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 0.9rem;
       border-radius: 8px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.9rem;
       outline: none;
+      margin-bottom: 1rem;
       transition: border-color 0.2s;
+      appearance: none;
     }
 
-    .form-row input::placeholder { color: var(--muted); }
-    .form-row input:focus { border-color: var(--orange); }
+    .form-wrap select option { background: #1E1D1B; }
 
-    .form-row button {
+    .form-wrap input:focus,
+    .form-wrap select:focus { border-color: var(--orange); }
+
+    .form-wrap input.error { border-color: #e24b4a; }
+
+    .form-wrap button {
+      width: 100%;
       background: var(--orange);
       color: #fff;
       border: none;
-      padding: 0.75rem 1.4rem;
+      padding: 0.85rem;
       border-radius: 8px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 500;
       cursor: pointer;
-      white-space: nowrap;
       transition: opacity 0.2s, transform 0.15s;
+      margin-top: 0.25rem;
     }
 
-    .form-row button:hover  { opacity: 0.88; }
-    .form-row button:active { transform: scale(0.97); }
+    .form-wrap button:hover  { opacity: 0.88; }
+    .form-wrap button:active { transform: scale(0.98); }
+    .form-wrap button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    /* ── STATS STRIP ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 1.2rem 0 0.5rem;
+    }
+
+    .success-msg .tick {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .success-msg p {
+      color: var(--light);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .success-msg span { color: var(--orange); }
+
+    /* ── STATS ── */
     .stats {
       display: flex;
       gap: 2.5rem;
@@ -192,7 +233,7 @@
       margin-top: 2px;
     }
 
-    /* ── DECORATIVE GEARS ── */
+    /* ── GEARS ── */
     .gear-wrap {
       position: fixed;
       bottom: 2rem;
@@ -201,8 +242,8 @@
       pointer-events: none;
     }
 
-    .gear  { animation: spin  6s linear infinite;         transform-origin: 50px 50px; }
-    .gear2 { animation: spin  4s linear infinite reverse; transform-origin: 105px 95px; }
+    .gear  { animation: spin 6s linear infinite;         transform-origin: 50px 50px; }
+    .gear2 { animation: spin 4s linear infinite reverse; transform-origin: 105px 95px; }
 
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes rise {
@@ -215,7 +256,6 @@
 
   <div class="wrap">
 
-    <!-- Logo -->
     <div class="logo-block">
       <div class="logo-icon">
         <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,18 +268,41 @@
       </div>
     </div>
 
-    <!-- Headline -->
     <h1>Coming <span>Soon.</span></h1>
 
     <p class="sub">
       Your trusted partner for generator sales, installation, and servicing.
-      We'll have our full website ready shortly — in the meantime, reach out and we'll get you powered up.
+      Drop your details and we'll reach out as soon as we're live.
     </p>
 
-    <!-- Notify -->
-    <div class="form-row">
-      <input type="email" placeholder="your@email.com" />
-      <button onclick="notify(this)">Notify me</button>
+    <!-- Form -->
+    <div class="form-wrap">
+      <div id="form-fields">
+        <label>Your Name</label>
+        <input type="text" id="name" placeholder="John Doe" />
+
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" />
+
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+
+        <label>What do you need?</label>
+        <select id="need">
+          <option value="" disabled selected>Select an option</option>
+          <option value="Buy a generator">Buy a generator</option>
+          <option value="Service / Repair">Service / Repair</option>
+          <option value="Installation">Installation</option>
+          <option value="General inquiry">General inquiry</option>
+        </select>
+
+        <button onclick="submitForm(this)">Get Notified →</button>
+      </div>
+
+      <div class="success-msg" id="success">
+        <div class="tick">⚡</div>
+        <p>Thanks! We'll reach out to you <span>soon.</span></p>
+      </div>
     </div>
 
     <!-- Stats -->
@@ -260,7 +323,6 @@
 
   </div>
 
-  <!-- Decorative gears -->
   <div class="gear-wrap">
     <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g class="gear">
@@ -270,10 +332,6 @@
         <rect x="45" y="74" width="10" height="14" rx="3" fill="#F4622A"/>
         <rect x="12" y="45" width="14" height="10" rx="3" fill="#F4622A"/>
         <rect x="74" y="45" width="14" height="10" rx="3" fill="#F4622A"/>
-        <rect x="18" y="18" width="10" height="10" rx="2" fill="#F4622A" transform="rotate(45 23 23)"/>
-        <rect x="68" y="18" width="10" height="10" rx="2" fill="#F4622A" transform="rotate(45 73 23)"/>
-        <rect x="18" y="68" width="10" height="10" rx="2" fill="#F4622A" transform="rotate(45 23 73)"/>
-        <rect x="68" y="68" width="10" height="10" rx="2" fill="#F4622A" transform="rotate(45 73 73)"/>
       </g>
       <g class="gear2">
         <circle cx="105" cy="95" r="18" stroke="#F4622A" stroke-width="3"/>
@@ -287,18 +345,65 @@
   </div>
 
   <script>
-    function notify(btn) {
-      const input = btn.previousElementSibling;
-      if (!input.value || !input.value.includes('@')) {
-        input.focus();
-        input.style.borderColor = '#e24b4a';
-        setTimeout(() => input.style.borderColor = '', 1500);
+    const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec";
+
+    async function submitForm(btn) {
+      if (SCRIPT_URL.includes('YOUR_DEPLOYED_SCRIPT_ID')) {
+        alert('Please replace YOUR_DEPLOYED_SCRIPT_ID with your actual Apps Script deployment ID in index.html.');
         return;
       }
-      btn.textContent = "✓ We'll be in touch!";
-      btn.style.background = '#27500a';
+
+      const nameField  = document.getElementById('name');
+      const phoneField = document.getElementById('phone');
+      const emailField = document.getElementById('email');
+      const needField  = document.getElementById('need');
+
+      [nameField, phoneField, emailField, needField].forEach(f => f.classList.remove('error'));
+
+      let valid = true;
+      if (!nameField.value.trim())  { nameField.classList.add('error');  valid = false; }
+      if (!phoneField.value.trim()) { phoneField.classList.add('error'); valid = false; }
+      if (!emailField.value.includes('@')) { emailField.classList.add('error'); valid = false; }
+      if (!needField.value)         { needField.classList.add('error');  valid = false; }
+      if (!valid) return;
+
+      btn.textContent = 'Sending...';
       btn.disabled = true;
-      input.disabled = true;
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name:  nameField.value.trim(),
+            phone: phoneField.value.trim(),
+            email: emailField.value.trim(),
+            need:  needField.value
+          })
+        });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error('Request failed ' + response.status + ': ' + text);
+        }
+
+        const result = await response.json();
+        if (result.result !== 'success') {
+          throw new Error(result.message || 'Submission failed');
+        }
+
+        document.getElementById('form-fields').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+
+      } catch (err) {
+        btn.textContent = 'Submit details';
+        btn.disabled = false;
+        alert('Submission failed. Please check your script deployment and CORS settings. See console for details.');
+        console.error(err);
+      }
     }
   </script>
 
