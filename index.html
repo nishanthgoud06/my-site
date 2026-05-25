@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --orange: #F4622A;
       --dark:   #111110;
@@ -15,7 +14,6 @@
       --muted:  #6B6860;
       --light:  #EDE9E0;
     }
-
     body {
       min-height: 100vh;
       background: var(--dark);
@@ -29,7 +27,6 @@
       overflow: hidden;
       position: relative;
     }
-
     body::before {
       content: '';
       position: fixed;
@@ -41,7 +38,6 @@
       opacity: 0.5;
       pointer-events: none;
     }
-
     body::after {
       content: '';
       position: fixed;
@@ -53,7 +49,6 @@
       background: radial-gradient(circle, rgba(244,98,42,0.16) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .wrap {
       position: relative;
       z-index: 1;
@@ -61,8 +56,6 @@
       max-width: 680px;
       width: 100%;
     }
-
-    /* ── LOGO ── */
     .logo-block {
       display: inline-flex;
       align-items: center;
@@ -70,7 +63,6 @@
       margin-bottom: 2.5rem;
       animation: rise 0.8s ease both;
     }
-
     .logo-icon {
       width: 64px;
       height: 64px;
@@ -81,14 +73,8 @@
       justify-content: center;
       flex-shrink: 0;
     }
-
-    .logo-icon svg {
-      width: 36px;
-      height: 36px;
-    }
-
+    .logo-icon svg { width: 36px; height: 36px; }
     .logo-text { text-align: left; }
-
     .logo-text .name {
       font-family: 'Black Han Sans', sans-serif;
       font-size: 1.65rem;
@@ -96,7 +82,6 @@
       line-height: 1;
       color: var(--light);
     }
-
     .logo-text .tag {
       font-size: 0.7rem;
       letter-spacing: 0.16em;
@@ -104,8 +89,6 @@
       color: var(--orange);
       margin-top: 5px;
     }
-
-    /* ── HEADLINE ── */
     h1 {
       font-family: 'Black Han Sans', sans-serif;
       font-size: clamp(2.8rem, 9vw, 5.5rem);
@@ -114,9 +97,7 @@
       margin-bottom: 1.2rem;
       animation: rise 0.8s 0.1s ease both;
     }
-
     h1 span { color: var(--orange); }
-
     p.sub {
       font-size: 1.05rem;
       color: var(--muted);
@@ -125,8 +106,6 @@
       margin: 0 auto 2.5rem;
       animation: rise 0.8s 0.2s ease both;
     }
-
-    /* ── FORM ── */
     .form-wrap {
       background: var(--mid);
       border: 1px solid #2a2a28;
@@ -137,7 +116,6 @@
       animation: rise 0.8s 0.3s ease both;
       text-align: left;
     }
-
     .form-wrap label {
       display: block;
       font-size: 0.75rem;
@@ -146,7 +124,6 @@
       color: var(--muted);
       margin-bottom: 5px;
     }
-
     .form-wrap input,
     .form-wrap select {
       width: 100%;
@@ -162,14 +139,11 @@
       transition: border-color 0.2s;
       appearance: none;
     }
-
     .form-wrap select option { background: #1E1D1B; }
-
     .form-wrap input:focus,
     .form-wrap select:focus { border-color: var(--orange); }
-
-    .form-wrap input.error { border-color: #e24b4a; }
-
+    .form-wrap input.error,
+    .form-wrap select.error { border-color: #e24b4a; }
     .form-wrap button {
       width: 100%;
       background: var(--orange);
@@ -184,31 +158,17 @@
       transition: opacity 0.2s, transform 0.15s;
       margin-top: 0.25rem;
     }
-
     .form-wrap button:hover  { opacity: 0.88; }
     .form-wrap button:active { transform: scale(0.98); }
     .form-wrap button:disabled { opacity: 0.6; cursor: not-allowed; }
-
     .success-msg {
       display: none;
       text-align: center;
       padding: 1.2rem 0 0.5rem;
     }
-
-    .success-msg .tick {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .success-msg p {
-      color: var(--light);
-      font-size: 1rem;
-      margin: 0;
-    }
-
+    .success-msg .tick { font-size: 2rem; margin-bottom: 0.5rem; }
+    .success-msg p { color: var(--light); font-size: 1rem; margin: 0; }
     .success-msg span { color: var(--orange); }
-
-    /* ── STATS ── */
     .stats {
       display: flex;
       gap: 2.5rem;
@@ -216,15 +176,12 @@
       flex-wrap: wrap;
       animation: rise 0.8s 0.4s ease both;
     }
-
     .stat .num {
       font-family: 'Black Han Sans', sans-serif;
       font-size: 1.8rem;
       color: var(--light);
     }
-
     .stat .num span { color: var(--orange); }
-
     .stat .lbl {
       font-size: 0.75rem;
       letter-spacing: 0.12em;
@@ -232,8 +189,6 @@
       color: var(--muted);
       margin-top: 2px;
     }
-
-    /* ── GEARS ── */
     .gear-wrap {
       position: fixed;
       bottom: 2rem;
@@ -241,10 +196,8 @@
       opacity: 0.15;
       pointer-events: none;
     }
-
     .gear  { animation: spin 6s linear infinite;         transform-origin: 50px 50px; }
     .gear2 { animation: spin 4s linear infinite reverse; transform-origin: 105px 95px; }
-
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes rise {
       from { opacity: 0; transform: translateY(22px); }
@@ -255,7 +208,6 @@
 <body>
 
   <div class="wrap">
-
     <div class="logo-block">
       <div class="logo-icon">
         <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -275,7 +227,6 @@
       Drop your details and we'll reach out as soon as we're live.
     </p>
 
-    <!-- Form -->
     <div class="form-wrap">
       <div id="form-fields">
         <label>Your Name</label>
@@ -305,7 +256,6 @@
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="stats">
       <div class="stat">
         <div class="num">20<span>+</span></div>
@@ -320,7 +270,6 @@
         <div class="lbl">Service &amp; support</div>
       </div>
     </div>
-
   </div>
 
   <div class="gear-wrap">
@@ -345,14 +294,9 @@
   </div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0lFouUXCVBbk6mPUmEtu--52CavlcyZVNFod50d9OMOmtvMuHU5zdYxOsXWpqT2Xx/exec";
 
     async function submitForm(btn) {
-      if (SCRIPT_URL.includes('YOUR_DEPLOYED_SCRIPT_ID')) {
-        alert('Please replace YOUR_DEPLOYED_SCRIPT_ID with your actual Apps Script deployment ID in index.html.');
-        return;
-      }
-
       const nameField  = document.getElementById('name');
       const phoneField = document.getElementById('phone');
       const emailField = document.getElementById('email');
@@ -361,49 +305,29 @@
       [nameField, phoneField, emailField, needField].forEach(f => f.classList.remove('error'));
 
       let valid = true;
-      if (!nameField.value.trim())  { nameField.classList.add('error');  valid = false; }
-      if (!phoneField.value.trim()) { phoneField.classList.add('error'); valid = false; }
+      if (!nameField.value.trim())         { nameField.classList.add('error');  valid = false; }
+      if (!phoneField.value.trim())        { phoneField.classList.add('error'); valid = false; }
       if (!emailField.value.includes('@')) { emailField.classList.add('error'); valid = false; }
-      if (!needField.value)         { needField.classList.add('error');  valid = false; }
+      if (!needField.value)                { needField.classList.add('error');  valid = false; }
       if (!valid) return;
 
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      try {
-        const response = await fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name:  nameField.value.trim(),
-            phone: phoneField.value.trim(),
-            email: emailField.value.trim(),
-            need:  needField.value
-          })
-        });
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:  nameField.value.trim(),
+          phone: phoneField.value.trim(),
+          email: emailField.value.trim(),
+          need:  needField.value
+        })
+      });
 
-        if (!response.ok) {
-          const text = await response.text();
-          throw new Error('Request failed ' + response.status + ': ' + text);
-        }
-
-        const result = await response.json();
-        if (result.result !== 'success') {
-          throw new Error(result.message || 'Submission failed');
-        }
-
-        document.getElementById('form-fields').style.display = 'none';
-        document.getElementById('success').style.display = 'block';
-
-      } catch (err) {
-        btn.textContent = 'Submit details';
-        btn.disabled = false;
-        alert('Submission failed. Please check your script deployment and CORS settings. See console for details.');
-        console.error(err);
-      }
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
     }
   </script>
 
