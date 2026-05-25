@@ -1,0 +1,8 @@
+{
+  "name": "jk-power-engineers",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "./serve.sh 8000"
+  }
+}
